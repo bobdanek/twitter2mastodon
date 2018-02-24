@@ -1,11 +1,10 @@
 import tweepy
-import twcreds
-import mastodon
 from mastodon import Mastodon
+import twcreds
 import macreds
 
 def crosspost():
-    # Set up Mastodon
+    # Set up Mastodon connection
     mastodon = Mastodon(
         client_id = 'pytooter_clientcred.secret',
         api_base_url = 'https://lgbt.io'
@@ -23,7 +22,7 @@ def crosspost():
         api_base_url = macreds.base_url
     )
 
-    # Set up Twitter
+    # Set up Twitter connection
     auth = tweepy.OAuthHandler(twcreds.consumer_key, twcreds.consumer_secret)
     auth.set_access_token(twcreds.access_token, twcreds.access_token_secret)
     api = tweepy.API(auth)
@@ -54,4 +53,3 @@ def crosspost():
         idtofile.close()
 
 crosspost()
-
